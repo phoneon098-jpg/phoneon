@@ -2,48 +2,146 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>폰광판 지원 · Phoneon Support</title>
-<style>
-  :root { color-scheme: light dark; }
-  body { font: 17px/1.7 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Segoe UI", sans-serif; max-width: 42rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
-  h1 { font-size: 1.6rem; } h2 { font-size: 1.15rem; margin-top: 2.2rem; }
-  hr { border: 0; border-top: 1px solid rgba(128,128,128,.4); margin: 3rem 0; }
-</style>
+<meta name="description" content="폰광판은 광고와 구독이 없는 응원 LED 전광판 앱입니다. 자주 묻는 질문과 문의 방법. Phoneon is an LED cheering banner app with no ads and no subscription.">
+<meta name="theme-color" content="#131313">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="폰광판 · Phoneon">
+<meta property="og:title" content="폰광판 · Phoneon">
+<meta property="og:description" content="폰을 LED 전광판으로. 광고도 구독도 없는 응원 전광판 앱.">
+<meta property="og:url" content="https://phoneon098-jpg.github.io/phoneon/">
+<meta property="og:image" content="https://phoneon098-jpg.github.io/phoneon/icon.png">
+<link rel="icon" href="icon.png">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="stylesheet" href="style.css">
+<script src="led.js"></script>
 </head>
 <body>
-<h1>폰광판 지원</h1>
-<p>폰광판은 광고와 구독이 없는 응원 LED 전광판 앱입니다.</p>
+<header class="top wrap">
+  <a class="lockup" href="./" data-keep-lang aria-label="폰광판 Phoneon">
+    <span class="mark" data-cat></span>
+    <span class="dot word" lang="ko" data-lang-block data-rows="13" data-weight="700" data-ref="" data-pitch="2.03">폰광판</span>
+    <span class="dot word" lang="en" data-lang-block data-rows="13" data-weight="700" data-ref="" data-pitch="2.03">Phoneon</span>
+  </a>
+  <div class="langs" role="group" aria-label="언어 · Language">
+    <button type="button" data-set-lang="ko" lang="ko">한국어</button>
+    <button type="button" data-set-lang="en" lang="en">English</button>
+  </div>
+</header>
 
-<h2>자주 묻는 질문</h2>
-<p><strong>전광판이 세로로 나와요.</strong><br>폰광판은 폰이 세로로 잠겨 있어도 긴 변을 가로로 써서 표시합니다. 폰을 옆으로 눕혀 들어 주세요.</p>
-<p><strong>닫는 버튼이 안 보여요.</strong><br>화면을 한 번 탭하면 버튼이 나타납니다. 잠금 상태라면 화면을 길게 눌러 푸세요.</p>
-<p><strong>폰 이어붙이기가 조금 어긋나요.</strong><br>각 폰의 시계로 맞추기 때문에 약간 차이가 날 수 있습니다. 전광판 화면을 탭한 뒤 아래쪽 싱크 버튼으로 조정하세요. 같은 크기의 폰끼리 가장 잘 맞습니다.</p>
-<p><strong>Pro를 샀는데 다른 기기에서 잠겨 있어요.</strong><br>같은 Apple 계정으로 로그인한 뒤 설정 또는 결제 화면의 "구매 복원"을 누르세요.</p>
-<p><strong>환불은 어떻게 하나요?</strong><br>결제는 Apple이 처리합니다. <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>에서 요청할 수 있습니다.</p>
+<main class="wrap">
+  <section class="hero">
+    <div class="bezel">
+      <canvas class="sign" role="img" data-label-ko="LED 전광판에 응원 문구가 지나가는 모습" data-label-en="Cheering messages running across an LED sign"></canvas>
+      <i class="screw"></i><i class="screw"></i><i class="screw"></i><i class="screw"></i>
+    </div>
 
-<h2>문의</h2>
-<p>궁금한 점이나 오류는 이메일로 보내 주세요. <a href="mailto:phoneon098@gmail.com">phoneon098@gmail.com</a></p>
+    <div lang="ko" data-lang-block>
+      <h1>폰을 LED 전광판으로</h1>
+      <p class="lede">콘서트, 경기장, 공항 마중에서 하고 싶은 말을 크게 띄우세요. 광고도 구독도 없고, 인터넷이 없어도 됩니다.</p>
+    </div>
+    <div lang="en" data-lang-block>
+      <h1>Turn your phone into an LED sign</h1>
+      <p class="lede">Say it big at concerts, games and airport arrivals. No ads, no subscription, and it works without the internet.</p>
+    </div>
 
-<p><a href="privacy.html">개인정보 처리방침</a></p>
+    <div class="board">
+      <div class="cell">
+        <span class="label"><span lang="ko" data-lang-block>광고</span><span lang="en" data-lang-block>Ads</span></span>
+        <span class="dot num" data-ref="" data-pitch="3">0</span>
+      </div>
+      <div class="cell">
+        <span class="label"><span lang="ko" data-lang-block>구독</span><span lang="en" data-lang-block>Subscriptions</span></span>
+        <span class="dot num" data-ref="" data-pitch="3">0</span>
+      </div>
+      <div class="cell">
+        <span class="label"><span lang="ko" data-lang-block>개인정보 수집</span><span lang="en" data-lang-block>Data collected</span></span>
+        <span class="dot num" data-ref="" data-pitch="3">0</span>
+      </div>
+    </div>
+  </section>
 
-<hr>
+  <section class="section" lang="ko" data-lang-block>
+    <h2 class="dot">자주 묻는 질문</h2>
+    <details>
+      <summary>전광판이 세로로 나와요.</summary>
+      <p>폰광판은 폰이 세로로 잠겨 있어도 긴 변을 가로로 써서 표시합니다. 폰을 옆으로 눕혀 들어 주세요.</p>
+    </details>
+    <details>
+      <summary>닫는 버튼이 안 보여요.</summary>
+      <p>화면을 한 번 탭하면 버튼이 나타납니다. 잠금 상태라면 화면을 길게 눌러 푸세요.</p>
+    </details>
+    <details>
+      <summary>폰 이어붙이기가 조금 어긋나요.</summary>
+      <p>각 폰의 시계로 맞추기 때문에 약간 차이가 날 수 있습니다. 전광판 화면을 탭한 뒤 아래쪽 싱크 버튼으로 조정하세요. 같은 크기의 폰끼리 가장 잘 맞습니다.</p>
+    </details>
+    <details>
+      <summary>인터넷이 없어도 되나요?</summary>
+      <p>네. 전광판은 인터넷 없이 켜집니다. Pro 구매와 구매 복원에만 App Store 연결이 필요합니다.</p>
+    </details>
+    <details>
+      <summary>Pro를 샀는데 다른 기기에서 잠겨 있어요.</summary>
+      <p>같은 Apple 계정으로 로그인한 뒤 설정 또는 결제 화면의 "구매 복원"을 누르세요.</p>
+    </details>
+    <details>
+      <summary>환불은 어떻게 하나요?</summary>
+      <p>결제는 Apple이 처리합니다. <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>에서 요청할 수 있습니다.</p>
+    </details>
+  </section>
 
-<div lang="en">
-<h1>Phoneon Support</h1>
-<p>Phoneon is an LED cheering banner app with no ads and no subscription.</p>
+  <section class="section" lang="en" data-lang-block>
+    <h2 class="dot">Common questions</h2>
+    <details>
+      <summary>The banner looks sideways.</summary>
+      <p>Phoneon always uses the long side of the screen, even with rotation lock on. Hold the phone sideways.</p>
+    </details>
+    <details>
+      <summary>I can't see the close button.</summary>
+      <p>Tap the screen once and the buttons appear. If the screen is locked, touch and hold to unlock.</p>
+    </details>
+    <details>
+      <summary>The phone wall is slightly out of step.</summary>
+      <p>Each phone follows its own clock, so small differences can happen. Tap the banner and use the sync buttons at the bottom. Phones of the same size line up best.</p>
+    </details>
+    <details>
+      <summary>Does it need the internet?</summary>
+      <p>No. Banners light up without a connection. Only buying Pro and restoring a purchase need the App Store.</p>
+    </details>
+    <details>
+      <summary>I bought Pro but it is locked on another device.</summary>
+      <p>Sign in with the same Apple account, then tap "Restore purchase" in Settings or on the purchase screen.</p>
+    </details>
+    <details>
+      <summary>How do I get a refund?</summary>
+      <p>Apple handles payments. Request one at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+    </details>
+  </section>
 
-<h2>Common questions</h2>
-<p><strong>The banner looks sideways.</strong><br>Phoneon always uses the long side of the screen, even with rotation lock on. Hold the phone sideways.</p>
-<p><strong>I can't see the close button.</strong><br>Tap the screen once and the buttons appear. If the screen is locked, touch and hold to unlock.</p>
-<p><strong>The phone wall is slightly out of step.</strong><br>Each phone follows its own clock, so small differences can happen. Tap the banner and use the sync buttons at the bottom. Phones of the same size line up best.</p>
-<p><strong>I bought Pro but it is locked on another device.</strong><br>Sign in with the same Apple account, then tap "Restore purchase" in Settings or on the purchase screen.</p>
-<p><strong>How do I get a refund?</strong><br>Apple handles payments. Request one at <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>.</p>
+  <section class="section" lang="ko" data-lang-block>
+    <h2 class="dot">문의</h2>
+    <div class="contact">
+      <p>궁금한 점이나 오류, 바라는 기능이 있으면 이메일로 보내 주세요.</p>
+      <a class="mail" href="mailto:phoneon098@gmail.com">phoneon098@gmail.com</a>
+      <p class="hint">오류를 알려 주실 때 기기 모델과 iOS 버전을 함께 적어 주시면 더 빨리 확인할 수 있어요.</p>
+    </div>
+  </section>
 
-<h2>Contact</h2>
-<p>Questions or problems: email <a href="mailto:phoneon098@gmail.com">phoneon098@gmail.com</a></p>
+  <section class="section" lang="en" data-lang-block>
+    <h2 class="dot">Contact</h2>
+    <div class="contact">
+      <p>Questions, problems and feature ideas are welcome by email.</p>
+      <a class="mail" href="mailto:phoneon098@gmail.com">phoneon098@gmail.com</a>
+      <p class="hint">When reporting a problem, please mention your device model and iOS version so it can be looked into faster.</p>
+    </div>
+  </section>
+</main>
 
-<p><a href="privacy.html">Privacy policy</a></p>
-</div>
+<footer class="wrap">
+  <div class="foot">
+    <a href="privacy.html" data-keep-lang><span lang="ko" data-lang-block>개인정보 처리방침</span><span lang="en" data-lang-block>Privacy policy</span></a>
+    <span>© 2026 Phoneon</span>
+  </div>
+</footer>
 </body>
 </html>

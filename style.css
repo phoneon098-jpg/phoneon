@@ -1,0 +1,300 @@
+/* The housing of an LED signboard, like the app's own screens: matte
+   charcoal with faint unlit dots, panels set into it, a yellow accent. */
+
+:root {
+  color-scheme: dark;
+  --housing: #131313;
+  --panel: rgba(0, 0, 0, .45);
+  --raised: #2b2b2b;
+  --line: rgba(255, 255, 255, .09);
+  --text: #f4f4f5;
+  --soft: #d0d0d6;
+  --muted: #9d9da5;
+  --accent: #ffe600;
+  --radius: 16px;
+  --font: system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", "Segoe UI", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  background: var(--housing);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background-color: var(--housing);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, .05), rgba(255, 255, 255, 0) 520px),
+    radial-gradient(circle, rgba(255, 255, 255, .055) 1.3px, transparent 1.6px);
+  background-size: 100% 100%, 9px 9px;
+  background-repeat: no-repeat, repeat;
+  font: 17px/1.65 var(--font);
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+a { color: var(--accent); text-underline-offset: 3px; }
+
+.wrap {
+  width: 100%;
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left));
+  padding-right: max(16px, env(safe-area-inset-right));
+}
+
+@media (min-width: 640px) {
+  .wrap { padding-left: 24px; padding-right: 24px; }
+}
+
+/* Text kept for screen readers and search engines where dots stand in for it. */
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* One language at a time once the script has picked one; both without it. */
+html[data-lang="ko"] [data-lang-block]:not([lang="ko"]),
+html[data-lang="en"] [data-lang-block]:not([lang="en"]) { display: none !important; }
+
+/* Dots drawn by led.js. Until then (or without scripts) the words show as text. */
+.dot { color: var(--accent); font-weight: 700; }
+.dot canvas { display: block; }
+.dot.lit { line-height: 0; }
+
+/* Header */
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px 12px;
+  padding-top: max(18px, env(safe-area-inset-top));
+  padding-bottom: 6px;
+}
+
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mark { display: inline-block; width: 40px; height: 40px; }
+.word { display: inline-block; font-size: 22px; }
+
+/* On the narrowest phones the switch moves under the name instead of off the screen. */
+.langs {
+  display: inline-flex;
+  flex: none;
+  margin-left: auto;
+  padding: 3px;
+  border-radius: 999px;
+  background: var(--raised);
+  border: 1px solid var(--line);
+}
+
+.langs button {
+  appearance: none;
+  border: 0;
+  margin: 0;
+  min-height: 34px;
+  padding: 0 13px;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: 600 14px/1 var(--font);
+  cursor: pointer;
+}
+
+.langs button[aria-pressed="true"] { background: #4b4b51; color: #fff; }
+.langs button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+html:not([data-lang]) .langs { display: none; }
+
+/* The sign in its bezel, as at the top of the app's editor */
+
+.hero { padding: 14px 0 0; }
+
+.bezel {
+  position: relative;
+  padding: 12px;
+  border-radius: 16px;
+  background: linear-gradient(#3d3d3d, #1c1c1c);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12), 0 20px 44px rgba(0, 0, 0, .5);
+}
+
+.sign {
+  display: block;
+  width: 100%;
+  aspect-ratio: 52 / 24;
+  border-radius: 6px;
+  background: #000;
+}
+
+.screw {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #5c5c5c;
+}
+
+.screw:nth-of-type(1) { top: 5px; left: 5px; }
+.screw:nth-of-type(2) { top: 5px; right: 5px; }
+.screw:nth-of-type(3) { bottom: 5px; left: 5px; }
+.screw:nth-of-type(4) { bottom: 5px; right: 5px; }
+
+html:not([data-lang]) .bezel { display: none; }
+
+.hero h1 {
+  margin: 28px 0 10px;
+  font-size: clamp(27px, 7vw, 40px);
+  line-height: 1.22;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+
+.lede { margin: 0; color: var(--soft); font-size: 18px; max-width: 34em; }
+
+/* A scoreboard: the things the app has none of */
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  margin: 28px 0 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--line);
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* numbers line up even when a label takes two lines */
+  gap: 10px;
+  padding: 14px 6px 18px;
+  background: #0b0b0b;
+  text-align: center;
+}
+
+.label { color: var(--muted); font-size: 13px; font-weight: 600; line-height: 1.3; }
+.num { font-size: 34px; line-height: 1; }
+
+/* Sections */
+
+.section { margin-top: 48px; }
+.section > h2 { margin: 0 0 16px; font-size: 24px; }
+
+details {
+  margin: 0 0 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+summary {
+  position: relative;
+  padding: 15px 48px 15px 18px;
+  font-weight: 700;
+  list-style: none;
+  cursor: pointer;
+  border-radius: var(--radius);
+}
+
+summary::-webkit-details-marker { display: none; }
+
+summary::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 21px;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--muted);
+  border-bottom: 2px solid var(--muted);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform .2s;
+}
+
+details[open] summary::after { transform: translateY(-25%) rotate(-135deg); }
+summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+details > p { margin: 0; padding: 0 18px 17px; color: var(--soft); }
+
+.contact {
+  padding: 20px 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.contact p { margin: 0 0 16px; color: var(--soft); }
+.contact .hint { margin: 14px 0 0; color: var(--muted); font-size: 14px; }
+
+.mail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.mail:active { opacity: .75; }
+.mail:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* The privacy policy */
+
+.doc { padding-top: 22px; }
+.doc h1 { margin: 10px 0 0; font-size: 30px; }
+.meta { margin: 20px 0 22px; color: var(--muted); font-size: 14px; }
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 8px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.summary p { margin: 0; color: var(--text); font-weight: 600; }
+.doc h2 { margin: 36px 0 8px; font-size: 19px; }
+.doc p { margin: 0 0 14px; color: var(--soft); }
+
+/* Footer */
+
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 60px;
+  padding-top: 20px;
+  padding-bottom: max(32px, env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.foot a { color: var(--text); }
